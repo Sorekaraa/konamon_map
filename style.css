@@ -1,0 +1,452 @@
+/*
+  🎨 全局样式与变量
+*/
+:root {
+    --bg-color: #f7f9fc;
+    --primary-color: #4a90e2; /* 蓝色 */
+    --green-color: #50e3c2;   /* 绿色 */
+    --pink-color: #ff69b4;    /* 粉色 */
+    --purple-color: #bd10e0;  /* 紫色 */
+    --orange-color: #f5a623;  /* 橙色 */
+    --border-radius: 12px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: var(--bg-color);
+    overflow: hidden;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/*
+  🖥️ 主容器布局
+*/
+#app-container {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    width: 95vw;
+    height: 95vh;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    gap: 15px;
+}
+
+/*
+  🌐 头部样式 (Header)
+*/
+#app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+#logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--orange-color);
+}
+
+#search-box {
+    display: flex;
+    flex-grow: 1;
+    max-width: 600px;
+    margin: 0 20px;
+}
+
+#search-box input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    outline: none;
+    font-size: 16px;
+}
+
+#user-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.action-btn {
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.achievement-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.achievement-btn:hover {
+    background-color: #3a7bd2;
+    transform: scale(1.1);
+}
+
+/*
+  📈 功能卡片样式
+*/
+#feature-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.card {
+    flex-grow: 1;
+    color: #fff;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.card-visited { background-color: var(--primary-color); }
+.card-checkin { background-color: var(--green-color); }
+.card-favorite { background-color: var(--pink-color); }
+.card-points { background-color: var(--purple-color); }
+
+.card-count {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.card-label {
+    font-size: 14px;
+    margin: 0;
+}
+
+/*
+  🖼️ 主要内容布局 (地图与信息面板)
+*/
+#main-content {
+    display: flex;
+    flex-grow: 1;
+    gap: 15px;
+}
+
+#left-panel {
+    flex: 2;
+    position: relative;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#right-panel {
+    flex: 1;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/*
+  🗺️ 地图与列表切换
+*/
+#view-toggle-buttons {
+    display: flex;
+    padding: 10px 15px 0;
+    gap: 10px;
+    background-color: #fff;
+    z-index: 10;
+}
+
+#view-toggle-buttons button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    color: #888;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#view-toggle-buttons button.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* 面板内容 */
+.panel-content {
+    position: absolute;
+    top: 48px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 48px);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.panel-content.active {
+    transform: translateX(0);
+}
+
+#map-container {
+    padding: 0;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+#shop-list-container {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#shop-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/*
+  📄 店铺卡片样式
+*/
+.shop-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.shop-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.shop-card-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.shop-card-info {
+    flex-grow: 1;
+}
+
+.shop-card-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.shop-card-rating {
+    font-size: 14px;
+    color: var(--orange-color);
+}
+
+.shop-card-distance {
+    font-size: 14px;
+    color: #666;
+}
+
+.shop-card-details {
+    font-size: 14px;
+    color: #666;
+    margin: 10px 0;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.shop-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tag {
+    background-color: #eee;
+    color: #555;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+/*
+  🔍 右侧详情面板
+*/
+#shop-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#close-panel-btn {
+    display: none;
+}
+
+#panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.shop-card-main-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#panel-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+#shop-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+#shop-rating {
+    font-size: 16px;
+    color: var(--orange-color);
+}
+
+#panel-distance {
+    font-size: 14px;
+    color: #666;
+}
+
+#panel-details-container {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+#panel-footer {
+    margin-top: 20px;
+}
+
+#check-in-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--green-color);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#check-in-btn:hover {
+    background-color: #43c9a8;
+}
+
+
+
+/* 顾客评价部分样式 */
+#customer-reviews {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+#customer-reviews h3 {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+    color: #444;
+}
+
+.review-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.review-card .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.review-card .review-author {
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+}
+
+.review-card .review-rating {
+    font-size: 14px;
+    color: var(--orange-color);
+}
+
+.review-card .review-text {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    line-height: 1.5;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>粉もんマップ</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="app-container">
+    <header id="app-header">
+        <div id="logo">粉もんマップ</div>
+        <div id="search-box">
+            <input type="text" placeholder="店舗名や料理で検索..." />
+            <button>検索</button>
+        </div>
+        <div id="user-actions">
+            <a href="achievements.html" class="action-btn achievement-btn">実績</a>
+        </div>
+    </header>
+
+    <div id="feature-cards">
+        <div class="card card-visited">
+            <p class="card-count" id="visited-count">0</p>
+            <p class="card-label">訪問済</p>
+        </div>
+        <div class="card card-checkin">
+            <p class="card-count" id="checkin-count">0</p>
+            <p class="card-label">チェックイン</p>
+        </div>
+        <div class="card card-favorite">
+            <p class="card-count">0</p>
+            <p class="card-label">お気に入り</p>
+        </div>
+        <div class="card card-points">
+            <p class="card-count" id="points-count">0</p>
+            <p class="card-label">利用できるポイント</p>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div id="left-panel">
+            <div id="view-toggle-buttons">
+                <button id="map-view-btn" class="active">マップ</button>
+                <button id="list-view-btn">一覧</button>
+            </div>
+
+            <div id="map-container" class="panel-content active">
+                <div id="map"></div>
+            </div>
+            <div id="shop-list-container" class="panel-content">
+                <div id="shop-list">
+                </div>
+            </div>
+        </div>
+
+        <div id="right-panel">
+            <div id="shop-panel" class="panel">
+                <button id="close-panel-btn">×</button>
+                <div id="panel-header">
+                    <div class="shop-card-main-info">
+                        <img id="panel-logo" src="" alt="ロゴ">
+                        <div>
+                            <h2 id="shop-name"></h2>
+                            <div id="shop-rating"></div>
+                        </div>
+                    </div>
+                    <div id="panel-distance"></div>
+                </div>
+
+                <div id="panel-details-container">
+                    <p id="shop-details"></p>
+                    <div class="info-item">
+                        <span class="icon">⏰</span>
+                        <span id="shop-hours"></span>
+                    </div>
+                    <div id="tags"></div>
+
+                    <div id="customer-reviews">
+                        <h3>顧客評価</h3>
+                        <div id="reviews-list">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="panel-footer">
+                    <button id="check-in-btn">チェックイン</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
