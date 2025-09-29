@@ -450,3 +450,116 @@ body {
     margin-top: 5px;
     line-height: 1.5;
 }
+
+/*
+  ==============================================
+  📱 媒体查询: 适应手机/平板 (最大宽度 768px)
+  ==============================================
+*/
+@media screen and (max-width: 768px) {
+    body {
+        /* 移除桌面居中，让内容充满屏幕，并允许滚动 */
+        height: auto;
+        min-height: 100vh;
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+
+    #app-container {
+        /* 更改为 flex 布局，垂直堆叠 */
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: auto;
+        min-height: 100vh;
+        padding: 10px;
+        gap: 10px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    /* 头部布局调整：垂直堆叠或简化 */
+    #app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    #search-box {
+        width: 100%; /* 搜索框全宽 */
+        max-width: none;
+        margin: 10px 0;
+    }
+
+    #user-actions {
+        width: 100%;
+        justify-content: flex-end; /* 将按钮靠右对齐 */
+    }
+
+    /* 功能卡片垂直堆叠 */
+    #feature-cards {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* 主内容区堆叠 */
+    #main-content {
+        flex-direction: column;
+        gap: 10px;
+        flex-grow: 1;
+    }
+
+    /* 左右面板占据全宽 */
+    #left-panel, #right-panel {
+        flex: none;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    /* 左面板 (地图/列表) 给一个固定高度 */
+    #left-panel {
+        height: 60vh;
+    }
+
+    /* 右侧详情面板：移动端全屏覆盖层 */
+    #right-panel {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 100vw;
+        height: 100vh;
+        transform: translateX(100%); /* 默认隐藏在屏幕右侧 */
+        transition: transform 0.3s ease-in-out;
+        padding: 15px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    /* 移动端显示详情面板的激活类 */
+    #right-panel.active-mobile {
+        transform: translateX(0); /* 显示面板 */
+    }
+
+    /* 移动端需要显示关闭按钮 */
+    #close-panel-btn {
+        display: block; /* 覆盖了原有的 display: none; */
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 30px;
+        color: #333;
+        z-index: 1001;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+    }
+
+    /* 确保地图容器充满 left-panel */
+    #map-container {
+        height: 100%;
+    }
+}

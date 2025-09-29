@@ -64,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const closePanelBtn = document.getElementById('close-panel-btn');
     const reviewsListEl = document.getElementById('reviews-list');
 
+    // 💡 NEW: 获取右侧详情面板元素 (用于移动端全屏显示)
+    const rightPanel = document.getElementById('right-panel');
+
     const shopNameEl = document.getElementById('shop-name');
     const shopRatingEl = document.getElementById('shop-rating');
     const panelDistanceEl = document.getElementById('panel-distance');
@@ -132,6 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
         checkInBtn.onclick = () => {
             checkIn(shop.name);
         };
+
+        // 💡 NEW: 如果是小屏幕设备，显示全屏详情面板
+        if (window.innerWidth <= 768) {
+            rightPanel.classList.add('active-mobile');
+        }
     }
 
     // 顾客评价显示函数
@@ -203,6 +211,11 @@ document.addEventListener('DOMContentLoaded', () => {
         mapContainer.classList.remove('active');
         listViewBtn.classList.add('active');
         mapViewBtn.classList.remove('active');
+    });
+
+    // 💡 NEW: 移动端关闭详情面板
+    closePanelBtn.addEventListener('click', () => {
+        rightPanel.classList.remove('active-mobile');
     });
 
     // 初始化函数
